@@ -25,7 +25,7 @@ namespace ContactsApi
             services.AddMvc();
             services.AddDbContext<DatabaseDbContext>(options =>
                 options.UseInMemoryDatabase(databaseName: "BoardGames"));
-            services.AddTransient<IOperationService, OperationService>();
+            services.AddScoped<IOperationService, OperationService>();
 
 
 

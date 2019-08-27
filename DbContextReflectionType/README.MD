@@ -9,6 +9,6 @@ http://localhost:5000/api/Values/Get
 
 
 {
-  "TypeName": "DbContextReflectionType.Models.EntityOne",
+  "TypeName": "DbContextReflectionType.Models.EntityTwo",
   "ConfigJson": "{\"Name\":\"imie\",\"ConfigTypeName\":\"configtypename\"}"
 }
