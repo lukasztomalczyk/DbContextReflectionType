@@ -1,5 +1,6 @@
 
 using DbContextReflectionType;
+using DbContextReflectionType.Services.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,9 +25,10 @@ namespace ContactsApi
             services.AddMvc();
             services.AddDbContext<DatabaseDbContext>(options =>
                 options.UseInMemoryDatabase(databaseName: "BoardGames"));
+            services.AddTransient<IOperationService, OperationService>();
 
 
-        
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

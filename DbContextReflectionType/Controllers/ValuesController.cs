@@ -19,28 +19,22 @@ namespace DbContextReflectionType.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        private readonly IServiceProvider _provider;
+        private readonly IOperationService _operationService;
 
-        public ValuesController(IServiceProvider provider)
+        public ValuesController(IOperationService operationService)
         {
-            _provider = provider;
+            _operationService = operationService;
         }
+        
         [HttpPost]
+        
         public IActionResult Get([FromBody] ConfigDto config)
         {
-            var result = CastConfig.Return(config);
-            
-            Type generic = typeof(OperationService<>);
-            Type constructed = generic.MakeGenericType(result.GetType());
-
-            var dbContext = _provider.GetService<DatabaseDbContext>();
-            
-            dynamic service = Activator.CreateInstance(constructed, dbContext);
-            service.Save(result as IConfiguration);
-            
+            _operationService.Deserialize(config)
+                .ActivateRepository()
+                .SaveConfig();
+           
             return Ok();
         }
-
-
     }
 }

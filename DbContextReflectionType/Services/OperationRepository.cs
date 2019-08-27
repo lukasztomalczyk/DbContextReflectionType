@@ -6,12 +6,11 @@ using DbContextReflectionType.Services.Helpers;
 
 namespace DbContextReflectionType.Services
 {
-    public class OperationService<T> where T : class, IConfiguration
+    internal class OperationRepository<T> where T : class, IConfiguration
     {
-        private IConfiguration entity;
         private readonly DatabaseDbContext _context;
 
-        public OperationService(DatabaseDbContext context)    
+        public OperationRepository(DatabaseDbContext context)    
         {
             _context = context;
         }
@@ -21,8 +20,10 @@ namespace DbContextReflectionType.Services
             Console.WriteLine(" ---- > Enter to Save method");
             _context.Set<T>();
             Console.WriteLine(" ---- > Set entity....");
+            
             _context.Add(configToSave);
             Console.WriteLine(" ---- > Add to context");
+            
             _context.SaveChanges();
             
             Console.WriteLine("Save to Database....");
