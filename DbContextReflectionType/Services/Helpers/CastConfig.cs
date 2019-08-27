@@ -13,9 +13,7 @@ namespace DbContextReflectionType.Services.Helpers
         {
             try
             {
-                var result = JsonConvert.DeserializeObject(config.ConfigJson, Type.GetType(config.TypeName));
-                Console.WriteLine("----> " + result.GetType().FullName);
-                return result;
+                return JsonConvert.DeserializeObject(config.ConfigJson, Type.GetType(config.TypeName));
             }
             catch (Exception c)
             {

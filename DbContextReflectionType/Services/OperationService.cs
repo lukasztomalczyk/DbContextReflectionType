@@ -16,11 +16,13 @@ namespace DbContextReflectionType.Services
             _context = context;
         }
 
-        public bool Save(T configToSave)
+        public bool Save(IConfiguration configToSave)
         {
-
+            Console.WriteLine(" ---- > Enter to Save method");
             _context.Set<T>();
+            Console.WriteLine(" ---- > Set entity....");
             _context.Add(configToSave);
+            Console.WriteLine(" ---- > Add to context");
             _context.SaveChanges();
             
             Console.WriteLine("Save to Database....");
